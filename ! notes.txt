@@ -1,0 +1,81 @@
+// 403 455
+//     ^
+
+//         0123456789.123456789.123456789.123456789.123456789.123456789.123456789.
+//         0         1         2         3         4         5         6         7
+           KSDFWKGLGXHPZBCLLJZPHOYJACNABVFYSSNOEY
+            ^                                ^
+            S
+             DFWKGLGXHPZBCLLJ
+                             ZPHOYJACNABVFYSS
+                                             N
+         B              1              1
+         A                         1  1
+         L        1       11
+         O                      1
+         N                           1       1
+
+---------------------------------------------------
+"YFKKNGQHABNNSXRZKXULDPOJTEUJJXQD"
+3
+24
+
+---------------------------------------------------
+Notes
+---------------------------------------------------
+
+Faster IndexOf for substrings #63285
+https://github.com/dotnet/runtime/pull/63285/files
+
+if (Vector128.IsHardwareAccelerated && searchSpaceMinusValueTailLength >= Vector128<ushort>.Count)
+if (Avx2.IsSupported && searchSpaceMinusValueTailLength - Vector256<ushort>.Count >= 0)
+
+
+---------------------------------------------------
+
+        internal static uint Test1(string S, int offset, int length, bool consoleOutput = false)
+        {
+            var counts = new uint[26];
+            var len = S.Length;
+
+            if(0 > offset || 0 > length || len < offset + length)
+            {
+                ErrorWriteLine($"Test1 - BAD PARAMETERS!");
+                if(100 > len)
+                    Console.WriteLine($"    [{offset} .. {offset+length}]  S: {S}  => return 0");
+                else
+                    Console.WriteLine($"    [{offset} .. {offset+length}]  S: ...[{len}]  => return 0");
+
+                return 0;
+            }
+
+            //                                                               ~1,05
+            var stopIdx = offset + length;
+            for(var i = offset; i < stopIdx; i++)
+                counts[S[i] - 65] += 1;
+
+            var result = counts['B' - 65];
+            result = Math.Min(result, counts['A' - 65]);
+            result = Math.Min(result, counts['L' - 65] >> 1);
+            result = Math.Min(result, counts['O' - 65] >> 1);
+            result = Math.Min(result, counts['N' - 65]);
+
+            if(consoleOutput)
+            {
+                if(100 > len)
+                    Console.WriteLine($"T1  S: {S}  => aeiou.count: {result}");
+                else
+                    Console.WriteLine($"T1  S: ...[{len}]  => aeiou.count: {result}");
+            }
+
+            return result;
+        }
+
+---------------------------------------------------
+---------------------------------------------------
+---------------------------------------------------
+---------------------------------------------------
+---------------------------------------------------
+---------------------------------------------------
+---------------------------------------------------
+---------------------------------------------------
