@@ -153,7 +153,7 @@ namespace SIMDeefect
         {
             ConsoleSeparator = GenerateConsoleSeparator();
 
-            var totalErrCount = SumArrayElts(alignedErrCounts);
+            var totalErrCount = SumArrayElts(alignedErrCounts) + SumArrayElts(unalignedErrCounts);
 
             ClearConsoleHelper();
 
