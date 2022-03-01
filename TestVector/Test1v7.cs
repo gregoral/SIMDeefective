@@ -8,7 +8,7 @@ using System;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
 
-namespace SIMDeefect
+namespace SIMDeefective
 {
     partial class Program
     {
@@ -144,7 +144,8 @@ namespace SIMDeefect
 
         internal static uint Test1vector7(string S, int offset, int length, bool alignVector)
         {
-            //                                                               ~0,18
+            if(5 > length) return 0;
+
             var counts = new uint[64 * 1024];
             var len = S.Length;
 

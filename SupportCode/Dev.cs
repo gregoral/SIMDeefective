@@ -6,7 +6,7 @@
 
 using System;
 
-namespace SIMDeefect
+namespace SIMDeefective
 {
     partial class Program
     {

@@ -3,27 +3,34 @@ Test CPUs for defective SIMD processing.
 
 ## TLDR
 Modern processors offer support for SIMD instructions which often allow much faster data processing.
-Unforutately SIMD processing is sometimes broken.
-This test suite aims to stress test SIMD instruction and verifies the results are correct.
+Unfortunately it appears that SIMD instruction processing is sometimes broken.
+This test suite aims to stress test SIMD instructions and verifies the results are correct.
 
 Issues are most evident on 4th generation of Intel Core processors.
 
+Each test takes a few hours to complete and executes several million calculations using different algorithm variants.
+On 4-th gen Intel Core processors errors are usually reprodicible in under a minute.
+
+## Algorithm:
+- generate a random length string of random characters
+- select random offset and length ( this insures we test aligned and unaligned vectors )
+- count all occurrences of aeiou characters within a string
+- return the minimum count of all 5 characters
+
 ## Next steps
-- test on more machines
-- add new test patterns
+- test on a larger set of machines
+- add new test algorithms and patterns
 
 ## Affected processors
-So far issues were encountered with the following processors:
+A table of tested processors and encountered issues:
 | Gen   | Model               | # Machines tested |# runs | ErrRate | Note                                       |
 |-------|:--------------------|------------------:|------:|--------:|:-------------------------------------------|
-| 6-th  | -                   |                 0 |     - |       - | no tests were run                          |
-| 4-th  | Intel Core i7-4790K |                 1 |  >100 | ~ 0.08% | error easily reproducible                  |
-| 4-th  | Intel Core i7-4785T |                 1 |   >20 | ~ 0.08% | error easily reproducible                  |
-| 5-th  | -                   |                 0 |     - |       - | no tests were run                          |
+| 4-th  | Intel Core i7-4790K |                 1 |  >100 | ~ 0.08% | errors easily reproducible                 |
+| 4-th  | Intel Core i7-4785T |                 1 |   >20 | ~ 0.08% | errors easily reproducible                 |
+| 4-th  | Intel Core i3-4130T |                 1 |     2 | ~ 0.11% | errors easily reproducible                 |
 | 6-th  | Intel Core i5-6500  |                 1 |   >40 |    > 0% | a single issue detected so far             |
 | 6-th  | Intel Core i7-6500U |                 1 |   >20 |      0% | no issues so far                           |
-| 6-th  | -                   |                 0 |     - |       - | no tests were run                          |
-| 7-th  | -                   |                 0 |     - |       - | no tests were run                          |
+| 7-th  | Intel Core i5-7500T |                 1 |     4 |      0% | no issues so far                           |
 | 8-th  | -                   |                 0 |     - |       - | no tests were run                          |
 | 9-th  | -                   |                 0 |     - |       - | no tests were run                          |
 | 10-th | -                   |                 0 |     - |       - | no tests were run                          |

@@ -6,7 +6,7 @@
 
 using System;
 
-namespace SIMDeefect
+namespace SIMDeefective
 {
     partial class Program
     {
@@ -206,11 +206,6 @@ namespace SIMDeefect
             Console.Write("minErrLen:         ");
             for (var i = 0; i < fnCount; i++)
                 Console.Write($" {minErrLengths[i],6}");
-            Console.WriteLine();
-
-            Console.Write("maxErrLen:         ");
-            for (var i = 0; i < fnCount; i++)
-                Console.Write($" {maxErrLengths[i],6}");
             Console.WriteLine();
 
             Console.WriteLine(ConsoleSeparator);

@@ -7,14 +7,12 @@
 using System;
 using System.Numerics;
 
-namespace SIMDeefect
+namespace SIMDeefective
 {
     partial class Program
     {
         public unsafe static uint VectorSum3(ReadOnlySpan<char> charSpan, int offset, int length, char c, bool alignVector)
         {
-            if(5 > length) return 0;
-
             int vectorSize = Vector<ushort>.Count;
             int eltBytes = sizeof(ushort);
             var vectorAlignmentMask = vectorSize * (eltBytes << 3) - 1;
@@ -79,7 +77,8 @@ namespace SIMDeefect
 
         internal static uint Test1vector3(string S, int offset, int length, bool alignVector)
         {
-            //                                                               ~0,31
+            if(5 > length) return 0;
+
             var counts = new uint[64 * 1024];
             var len = S.Length;
 

@@ -6,13 +6,14 @@
 
 using System;
 
-namespace SIMDeefect
+namespace SIMDeefective
 {
     partial class Program
     {
         internal static uint Test1(string S, int offset, int length, bool alignVector)
         {
-            //                                                               ~1,05
+            if(5 > length) return 0;
+
             var counts = new uint[26];
             var len = S.Length;
 
